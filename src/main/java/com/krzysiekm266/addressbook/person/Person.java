@@ -1,5 +1,6 @@
 package com.krzysiekm266.addressbook.person;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import com.krzysiekm266.addressbook.phone.Phone;
@@ -11,14 +12,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "persons")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Setter
@@ -34,5 +33,5 @@ public class Person {
     private String lastName;
 
     @OneToMany(mappedBy = "person",orphanRemoval = true,fetch = FetchType.LAZY)
-    private Set<Phone> phone ;
+    private Set<Phone> phone  = new HashSet<>();
 }
